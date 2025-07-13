@@ -7,15 +7,15 @@ import { createServer } from 'http'
 import { Server } from 'socket.io'
 import rateLimit from 'express-rate-limit'
 
-import { connectDB } from '@/config/database'
-import { logger } from '@/utils/logger'
-import { errorHandler } from '@/middleware/errorHandler'
+import { connectDB } from './config/database'
+import { logger } from './utils/logger'
+import { errorHandler } from './middleware/errorHandler'
 
 // Routes
-import authRoutes from '@/routes/auth'
-import userRoutes from '@/routes/user'
-import postRoutes from '@/routes/post'
-import communityRoutes from '@/routes/community'
+import authRoutes from './routes/auth'
+import userRoutes from './routes/user'
+import postRoutes from './routes/post'
+import communityRoutes from './routes/community'
 
 // Load environment variables
 dotenv.config()

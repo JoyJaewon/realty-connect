@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { asyncHandler } from '@/middleware/errorHandler'
-import { AuthRequest } from '@/middleware/auth'
+import { asyncHandler } from '../middleware/errorHandler'
+import { AuthRequest } from '../middleware/auth'
 
 // TODO: Post 모델이 생성되면 실제 구현
 export const createPost = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {

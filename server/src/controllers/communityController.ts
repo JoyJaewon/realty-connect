@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { asyncHandler } from '@/middleware/errorHandler'
-import { AuthRequest } from '@/middleware/auth'
+import { asyncHandler } from '../middleware/errorHandler'
+import { AuthRequest } from '../middleware/auth'
 
 export const getCommunities = asyncHandler(async (req: Request, res: Response): Promise<void> => {
   const page = parseInt(req.query.page as string) || 1

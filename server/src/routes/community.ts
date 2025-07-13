@@ -1,10 +1,10 @@
-import express from 'express'
+import { Router } from 'express'
 import { body } from 'express-validator'
-import { getCommunities, getCommunity, createCommunity, joinCommunity, leaveCommunity } from '@/controllers/communityController'
-import { auth } from '@/middleware/auth'
-import { validate } from '@/middleware/validate'
+import { getCommunities, getCommunity, createCommunity, joinCommunity, leaveCommunity } from '../controllers/communityController'
+import { auth } from '../middleware/auth'
+import { validate } from '../middleware/validate'
 
-const router = express.Router()
+const router = Router()
 
 // 커뮤니티 목록 조회
 router.get('/', getCommunities)

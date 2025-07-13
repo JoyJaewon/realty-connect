@@ -1,10 +1,10 @@
-import express from 'express'
+import { Router } from 'express'
 import { body } from 'express-validator'
-import { createPost, getPosts, getPost, updatePost, deletePost, likePost, unlikePost } from '@/controllers/postController'
-import { auth } from '@/middleware/auth'
-import { validate } from '@/middleware/validate'
+import { createPost, getPosts, getPost, updatePost, deletePost, likePost, unlikePost } from '../controllers/postController'
+import { auth } from '../middleware/auth'
+import { validate } from '../middleware/validate'
 
-const router = express.Router()
+const router = Router()
 
 // 게시물 생성
 router.post('/', [

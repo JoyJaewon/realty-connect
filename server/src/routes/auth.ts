@@ -1,10 +1,10 @@
-import express from 'express'
+import { Router } from 'express'
 import { body } from 'express-validator'
-import { register, login, refreshToken, logout, getMe } from '@/controllers/authController'
-import { auth } from '@/middleware/auth'
-import { validate } from '@/middleware/validate'
+import { register, login, refreshToken, logout, getMe } from '../controllers/authController'
+import { auth } from '../middleware/auth'
+import { validate } from '../middleware/validate'
 
-const router = express.Router()
+const router = Router()
 
 // 회원가입
 router.post('/register', [

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
-import { User, IUser } from '@/models/User'
-import { logger } from '@/utils/logger'
-import { asyncHandler } from '@/middleware/errorHandler'
-import { AuthRequest } from '@/middleware/auth'
+import { User, IUser } from '../models/User'
+import { logger } from '../utils/logger'
+import { asyncHandler } from '../middleware/errorHandler'
+import { AuthRequest } from '../middleware/auth'
 
 interface JwtPayload {
   id: string

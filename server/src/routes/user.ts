@@ -1,10 +1,10 @@
-import express from 'express'
+import { Router } from 'express'
 import { body } from 'express-validator'
-import { getUserProfile, updateProfile, getUserPosts, followUser, unfollowUser } from '@/controllers/userController'
-import { auth } from '@/middleware/auth'
-import { validate } from '@/middleware/validate'
+import { getUserProfile, updateProfile, getUserPosts, followUser, unfollowUser } from '../controllers/userController'
+import { auth } from '../middleware/auth'
+import { validate } from '../middleware/validate'
 
-const router = express.Router()
+const router = Router()
 
 // 사용자 프로필 조회
 router.get('/:userId', getUserProfile)

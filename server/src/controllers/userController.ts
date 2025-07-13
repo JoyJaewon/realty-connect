@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { User } from '@/models/User'
-import { asyncHandler } from '@/middleware/errorHandler'
-import { AuthRequest } from '@/middleware/auth'
+import { User } from '../models/User'
+import { asyncHandler } from '../middleware/errorHandler'
+import { AuthRequest } from '../middleware/auth'
 
 export const getUserProfile = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
   const { userId } = (req as any).params
