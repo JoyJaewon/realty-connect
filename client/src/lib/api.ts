@@ -2,6 +2,10 @@ import axios from 'axios'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://realty-connect.onrender.com/api'
 
+// 디버깅용 로그
+console.log('API_BASE_URL:', API_BASE_URL)
+console.log('NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL)
+
 export const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
