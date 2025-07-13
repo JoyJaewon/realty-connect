@@ -5,14 +5,19 @@ export const connectDB = async (): Promise<void> => {
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/realty-connect'
     
+    console.log('Attempting to connect to MongoDB...')
+    console.log('MongoDB URI (masked):', mongoUri.replace(/\/\/[^:]+:[^@]+@/, '//***:***@'))
+    
     await mongoose.connect(mongoUri, {
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
     })
     
+    console.log('MongoDB connected successfully')
     logger.info('MongoDB connected successfully')
   } catch (error) {
+    console.error('MongoDB connection error:', error)
     logger.error('MongoDB connection error:', error)
     process.exit(1)
   }

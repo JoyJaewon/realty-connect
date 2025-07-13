@@ -20,6 +20,14 @@ import communityRoutes from './routes/community'
 // Load environment variables
 dotenv.config()
 
+// 환경 변수 확인 로깅
+console.log('Environment variables check:')
+console.log('NODE_ENV:', process.env.NODE_ENV)
+console.log('PORT:', process.env.PORT)
+console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI)
+console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET)
+console.log('CORS_ORIGIN:', process.env.CORS_ORIGIN)
+
 const app = express()
 const server = createServer(app)
 const io = new Server(server, {
@@ -93,17 +101,26 @@ app.use((_req: any, res: any) => {
 // Start server
 const startServer = async () => {
   try {
+    console.log('Starting server...')
     await connectDB()
+    console.log('Database connected, starting HTTP server...')
+    
     server.listen(PORT, () => {
       logger.info(`Server running on port ${PORT}`)
       logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`)
+      console.log(`🚀 Server successfully started on port ${PORT}`)
     })
   } catch (error) {
+    console.error('Failed to start server:', error)
     logger.error('Failed to start server:', error)
     process.exit(1)
   }
 }
 
-startServer()
+console.log('Calling startServer...')
+startServer().catch((error) => {
+  console.error('Unhandled error in startServer:', error)
+  process.exit(1)
+})
 
 export { io } 
