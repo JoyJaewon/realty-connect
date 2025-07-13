@@ -2,7 +2,7 @@ module.exports = {
   i18n: {
     defaultLocale: 'ko',
     locales: ['ko', 'en'],
-    localeDetection: true,
+    localeDetection: false, // Vercel 배포 시 문제 방지
   },
   fallbackLng: {
     default: ['ko'],
