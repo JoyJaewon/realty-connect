@@ -49,7 +49,12 @@ const limiter = rateLimit({
 // Middleware
 app.use(helmet())
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://realty-connect-client.vercel.app',
+    /^https:\/\/realty-connect-client-.*\.vercel\.app$/
+  ],
   credentials: true
 }))
 app.use(morgan('combined', { stream: { write: (message: any) => logger.info(message.trim()) } }))
