@@ -127,7 +127,7 @@ export default function Sidebar({ user, className = "" }: SidebarProps) {
                 <CardHeader>
                     <CardTitle className="text-lg">내 지역 그룹</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="p-6 space-y-3">
                     <div className="flex items-center space-x-2">
                         <MapPin className="w-4 h-4 text-gray-400" />
                         <div>

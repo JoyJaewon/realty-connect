@@ -8,7 +8,12 @@ import {
     MapPin,
     DollarSign,
     BookOpen,
+    FileText,
+    Users,
+    Book,
+    Map,
 } from "lucide-react"
+import Link from "next/link"
 
 // Layout Components
 import Header from "./layout/Header"
@@ -78,7 +83,7 @@ export default function RealtyConnectPlatform() {
                 <CardHeader>
                     <CardTitle className="text-lg">멘토 찾기</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="p-6 space-y-3">
                     <div className="flex items-center space-x-3">
                         <Avatar className="w-10 h-10">
                             <AvatarFallback>김전</AvatarFallback>
@@ -120,35 +125,131 @@ export default function RealtyConnectPlatform() {
 
     const renderToolsContent = () => (
         <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardContent className="p-6">
-                        <Calculator className="w-8 h-8 text-emerald-600 mb-3" />
-                        <h3 className="font-semibold mb-2">BRRRR 계산기</h3>
-                        <p className="text-sm text-gray-600">Buy, Rehab, Rent, Refinance, Repeat 전략 수익성 분석</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardContent className="p-6">
-                        <TrendingUp className="w-8 h-8 text-amber-600 mb-3" />
-                        <h3 className="font-semibold mb-2">1031 교환 가이드</h3>
-                        <p className="text-sm text-gray-600">세금 이연을 위한 1031 교환 절차와 조건</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardContent className="p-6">
-                        <MapPin className="w-8 h-8 text-blue-600 mb-3" />
-                        <h3 className="font-semibold mb-2">지역 분석 도구</h3>
-                        <p className="text-sm text-gray-600">임대 수익률, 범죄율, 학군 정보 한눈에</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardContent className="p-6">
-                        <DollarSign className="w-8 h-8 text-green-600 mb-3" />
-                        <h3 className="font-semibold mb-2">DSCR 융자 계산기</h3>
-                        <p className="text-sm text-gray-600">부채상환비율 기반 융자 조건 시뮬레이션</p>
-                    </CardContent>
-                </Card>
+            {/* 실전 가이드 */}
+            <div className="mb-6">
+                <h2 className="text-xl font-bold mb-4">실전 가이드</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Link href="/guides/dscr-loan">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <DollarSign className="w-8 h-8 text-green-600 mb-3" />
+                                <h3 className="font-semibold mb-2">DSCR 융자 받는 법</h3>
+                                <p className="text-sm text-gray-600">부채상환비율 기반 융자 완전 정복 가이드</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                    <Link href="/guides/eviction-process">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <FileText className="w-8 h-8 text-red-600 mb-3" />
+                                <h3 className="font-semibold mb-2">임차인 퇴거 절차</h3>
+                                <p className="text-sm text-gray-600">주별 퇴거 법률과 실제 절차 안내</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                    <Link href="/guides/1031-exchange">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <TrendingUp className="w-8 h-8 text-amber-600 mb-3" />
+                                <h3 className="font-semibold mb-2">1031 교환 활용법</h3>
+                                <p className="text-sm text-gray-600">세금 이연을 위한 1031 교환 완전 가이드</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                    <Link href="/dictionary">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <Book className="w-8 h-8 text-purple-600 mb-3" />
+                                <h3 className="font-semibold mb-2">용어 사전</h3>
+                                <p className="text-sm text-gray-600">부동산 투자 용어와 실제 대화 예시</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                </div>
+            </div>
+
+            {/* 투자 계산기 */}
+            <div className="mb-6">
+                <h2 className="text-xl font-bold mb-4">투자 계산기</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Link href="/calculators/brrrr">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <Calculator className="w-8 h-8 text-emerald-600 mb-3" />
+                                <h3 className="font-semibold mb-2">BRRRR 계산기</h3>
+                                <p className="text-sm text-gray-600">Buy, Rehab, Rent, Refinance, Repeat 전략 수익성 분석</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                    <Link href="/calculators/rental">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <Calculator className="w-8 h-8 text-blue-600 mb-3" />
+                                <h3 className="font-semibold mb-2">임대 수익 계산기</h3>
+                                <p className="text-sm text-gray-600">단기/중기/장기 임대 수익률 비교 분석</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                    <Link href="/calculators/flipping">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <Calculator className="w-8 h-8 text-orange-600 mb-3" />
+                                <h3 className="font-semibold mb-2">플리핑 계산기</h3>
+                                <p className="text-sm text-gray-600">Fix & Flip 프로젝트 수익성 분석</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                    <Link href="/calculators/dscr">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <DollarSign className="w-8 h-8 text-green-600 mb-3" />
+                                <h3 className="font-semibold mb-2">DSCR 융자 계산기</h3>
+                                <p className="text-sm text-gray-600">부채상환비율 기반 융자 조건 시뮬레이션</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                </div>
+            </div>
+
+            {/* 자료실 */}
+            <div className="mb-6">
+                <h2 className="text-xl font-bold mb-4">PDF & 템플릿 자료실</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Link href="/resources/contracts">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <FileText className="w-8 h-8 text-indigo-600 mb-3" />
+                                <h3 className="font-semibold mb-2">계약서 샘플</h3>
+                                <p className="text-sm text-gray-600">임대차, 매매, 관리 계약서 템플릿</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                    <Link href="/resources/checklists">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <FileText className="w-8 h-8 text-teal-600 mb-3" />
+                                <h3 className="font-semibold mb-2">체크리스트</h3>
+                                <p className="text-sm text-gray-600">융자 서류, 실사, 검사 체크리스트</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                </div>
+            </div>
+
+            {/* 지역 분석 도구 */}
+            <div className="mb-6">
+                <h2 className="text-xl font-bold mb-4">지역 분석 도구</h2>
+                <div className="grid grid-cols-1 gap-4">
+                    <Link href="/market-analysis">
+                        <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                            <CardContent className="p-6">
+                                <Map className="w-8 h-8 text-blue-600 mb-3" />
+                                <h3 className="font-semibold mb-2">미국 전역 지역 분석</h3>
+                                <p className="text-sm text-gray-600">임대 수익률, 범죄율, 학군, 인구 성장률 시각화</p>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                </div>
             </div>
         </div>
     )
