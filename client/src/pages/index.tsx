@@ -1,32 +1,22 @@
-import { useState } from 'react'
-import { GetStaticProps } from 'next'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
+"use client"
 
-import RealtyConnectPlatform from '@/components/RealtyConnectPlatform'
+import { useEffect } from "react"
+import { useRouter } from "next/router"
 
-export default function Home() {
-    const { t } = useTranslation('common')
+export default function HomePage() {
+    const router = useRouter()
+
+    useEffect(() => {
+        // 메인 페이지 접속 시 커뮤니티 페이지로 리다이렉트
+        router.push("/community")
+    }, [router])
 
     return (
-        <>
-            <Head>
-                <title>{t('title', 'RealtyConnect - 부동산 투자 커뮤니티')}</title>
-                <meta name="description" content={t('description', '한국어와 영어를 지원하는 부동산 투자 커뮤니티 플랫폼')} />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
-            <RealtyConnectPlatform />
-        </>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="text-center">
+                <h1 className="text-2xl font-bold text-gray-900 mb-4">RealtyConnect</h1>
+                <p className="text-gray-600">페이지를 로딩 중입니다...</p>
+            </div>
+        </div>
     )
-}
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-    return {
-        props: {
-            ...(await serverSideTranslations(locale ?? 'ko', ['common'])),
-        },
-    }
 } 

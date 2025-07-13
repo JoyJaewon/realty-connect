@@ -10,6 +10,8 @@ import {
     Menu,
     X,
 } from "lucide-react"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
 // Avatar 컴포넌트 (임시)
 const Avatar = ({ children, className }: { children: React.ReactNode; className?: string }) => (
@@ -51,18 +53,30 @@ const Badge = ({
 
 interface HeaderProps {
     activeTab: string
-    onTabChange: (tab: string) => void
+    onTabChange?: (tab: string) => void
 }
 
 export default function Header({ activeTab, onTabChange }: HeaderProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const router = useRouter()
 
     const navigationItems = [
-        { id: "feed", label: "커뮤니티" },
-        { id: "tools", label: "도구" },
-        { id: "education", label: "교육" },
-        { id: "network", label: "네트워크" },
+        { id: "feed", label: "커뮤니티", href: "/community" },
+        { id: "tools", label: "도구", href: "/tools" },
+        { id: "education", label: "교육", href: "/education" },
+        { id: "network", label: "네트워크", href: "/network" },
     ]
+
+    const getActiveTab = () => {
+        const path = router.pathname
+        if (path === "/community") return "feed"
+        if (path === "/tools") return "tools"
+        if (path === "/education") return "education"
+        if (path === "/network") return "network"
+        return activeTab
+    }
+
+    const currentActiveTab = getActiveTab()
 
     return (
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -70,26 +84,26 @@ export default function Header({ activeTab, onTabChange }: HeaderProps) {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <div className="flex items-center space-x-8">
-                        <div className="flex items-center space-x-2">
+                        <Link href="/community" className="flex items-center space-x-2">
                             <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center">
                                 <Home className="w-5 h-5 text-white" />
                             </div>
                             <span className="text-xl font-bold text-slate-800">RealtyConnect</span>
-                        </div>
+                        </Link>
 
                         {/* Desktop Navigation */}
                         <nav className="hidden md:flex space-x-6">
                             {navigationItems.map((item) => (
-                                <button
+                                <Link
                                     key={item.id}
-                                    onClick={() => onTabChange(item.id)}
-                                    className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === item.id
+                                    href={item.href}
+                                    className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${currentActiveTab === item.id
                                         ? "text-slate-800 bg-gray-100"
                                         : "text-gray-600 hover:text-slate-800"
                                         }`}
                                 >
                                     {item.label}
-                                </button>
+                                </Link>
                             ))}
                         </nav>
                     </div>
@@ -139,19 +153,17 @@ export default function Header({ activeTab, onTabChange }: HeaderProps) {
                     <div className="md:hidden border-t border-gray-200">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {navigationItems.map((item) => (
-                                <button
+                                <Link
                                     key={item.id}
-                                    onClick={() => {
-                                        onTabChange(item.id)
-                                        setIsMobileMenuOpen(false)
-                                    }}
-                                    className={`block w-full text-left px-3 py-2 text-base font-medium rounded-md transition-colors ${activeTab === item.id
+                                    href={item.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={`block w-full text-left px-3 py-2 text-base font-medium rounded-md transition-colors ${currentActiveTab === item.id
                                         ? "text-slate-800 bg-gray-100"
                                         : "text-gray-600 hover:text-slate-800"
                                         }`}
                                 >
                                     {item.label}
-                                </button>
+                                </Link>
                             ))}
                         </div>
                         <div className="px-2 pb-3 space-y-3">
