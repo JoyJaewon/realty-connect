@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Heart, MessageCircle, Share2, BookOpen, BarChart3 } from "lucide-react"
 import { Post } from "@/lib/api"
 
@@ -104,20 +105,24 @@ export default function PostCard({ post, onLike, onUnlike }: PostCardProps) {
         <Card>
             <CardContent className="p-6">
                 <div className="flex items-start space-x-3 mb-4">
-                    <Avatar>
-                        {post.author.avatar ? (
-                            <AvatarImage src={post.author.avatar} alt={post.author.firstName} />
-                        ) : (
-                            <AvatarFallback>
-                                {getInitials(post.author.firstName, post.author.lastName)}
-                            </AvatarFallback>
-                        )}
-                    </Avatar>
+                    <Link href={`/profile/${post.author._id}`}>
+                        <Avatar className="cursor-pointer hover:opacity-80 transition-opacity">
+                            {post.author.avatar ? (
+                                <AvatarImage src={post.author.avatar} alt={post.author.firstName} />
+                            ) : (
+                                <AvatarFallback>
+                                    {getInitials(post.author.firstName, post.author.lastName)}
+                                </AvatarFallback>
+                            )}
+                        </Avatar>
+                    </Link>
                     <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-1">
-                            <h4 className="font-semibold text-slate-800">
-                                {post.author.firstName}{post.author.lastName}
-                            </h4>
+                            <Link href={`/profile/${post.author._id}`}>
+                                <h4 className="font-semibold text-slate-800 hover:text-blue-600 cursor-pointer transition-colors">
+                                    {post.author.firstName}{post.author.lastName}
+                                </h4>
+                            </Link>
                             <Badge variant="secondary" className="text-xs">
                                 {post.location} • {formatTimeAgo(post.createdAt)}
                             </Badge>

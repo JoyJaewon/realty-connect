@@ -241,22 +241,13 @@ export const postsApi = {
 
 // Users API
 export const usersApi = {
-  getUserProfile: async (userId: string): Promise<ApiResponse<{ user: User }>> => {
+  getUser: async (userId: string): Promise<ApiResponse<{ user: User }>> => {
     const response = await api.get(`/users/${userId}`)
     return response.data
   },
 
-  updateProfile: async (profileData: Partial<{
-    firstName: string
-    lastName: string
-    bio: string
-    location: string
-    investmentGoals: string[]
-    totalAssets: number
-    monthlyRentalIncome: number
-    propertyCount: number
-  }>): Promise<ApiResponse<{ user: User }>> => {
-    const response = await api.put('/users/profile', profileData)
+  updateUser: async (userId: string, userData: Partial<User>): Promise<ApiResponse<{ user: User }>> => {
+    const response = await api.put(`/users/${userId}`, userData)
     return response.data
   },
 
@@ -266,7 +257,17 @@ export const usersApi = {
   },
 
   unfollowUser: async (userId: string): Promise<ApiResponse<null>> => {
-    const response = await api.post(`/users/${userId}/unfollow`)
+    const response = await api.delete(`/users/${userId}/follow`)
+    return response.data
+  },
+
+  getFollowers: async (userId: string): Promise<ApiResponse<{ users: User[] }>> => {
+    const response = await api.get(`/users/${userId}/followers`)
+    return response.data
+  },
+
+  getFollowing: async (userId: string): Promise<ApiResponse<{ users: User[] }>> => {
+    const response = await api.get(`/users/${userId}/following`)
     return response.data
   },
 } 
