@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 
-import { RealtyConnectPlatform } from '@/components/RealtyConnectPlatform'
+import RealtyConnectPlatform from '@/components/RealtyConnectPlatform'
 
 export default function Home() {
     const { t } = useTranslation('common')
