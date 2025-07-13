@@ -8,7 +8,7 @@ export interface AuthRequest extends Request {
 
 export const auth = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const token = req.header('Authorization')?.replace('Bearer ', '')
+    const token = (req as any).header('Authorization')?.replace('Bearer ', '')
 
     if (!token) {
       res.status(401).json({
@@ -41,7 +41,7 @@ export const auth = async (req: AuthRequest, res: Response, next: NextFunction):
 
 export const optionalAuth = async (req: AuthRequest, _res: Response, next: NextFunction): Promise<void> => {
   try {
-    const token = req.header('Authorization')?.replace('Bearer ', '')
+    const token = (req as any).header('Authorization')?.replace('Bearer ', '')
 
     if (token) {
       const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string }

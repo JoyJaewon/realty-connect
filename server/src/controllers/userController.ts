@@ -135,7 +135,7 @@ export const followUser = asyncHandler(async (req: AuthRequest, res: Response): 
 })
 
 export const unfollowUser = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { userId } = req.params
+  const { userId } = (req as any).params
   const currentUserId = req.user!._id
 
   const userToUnfollow = await User.findById(userId)

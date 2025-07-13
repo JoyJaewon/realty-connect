@@ -17,7 +17,12 @@
     "build:server": "cd server && npm run build",
     "start": "cd server && npm start",
     "install:all": "npm install && cd client && npm install && cd ../server && npm install",
-    "type-check": "cd client && npm run type-check && cd ../server && npm run type-check"
+    "type-check": "cd client && npm run type-check && cd ../server && npm run type-check",
+    "tc": "npm run type-check",
+    "type-check:client": "cd client && npm run type-check",
+    "type-check:server": "cd server && npm run type-check",
+    "tc:client": "npm run type-check:client",
+    "tc:server": "npm run type-check:server"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

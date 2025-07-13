@@ -24,8 +24,8 @@ export const getCommunities = asyncHandler(async (req: Request, res: Response): 
   })
 })
 
-export const getCommunity = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  const { communityId: _communityId } = req.params
+export const getCommunity = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
+  const { communityId: _communityId } = (req as any).params
 
   // TODO: Community 모델이 생성되면 실제 커뮤니티 조회 로직 구현
   const community = null
@@ -37,7 +37,7 @@ export const getCommunity = asyncHandler(async (req: Request, res: Response): Pr
 })
 
 export const createCommunity = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { name, description, category, isPrivate } = req.body
+  const { name, description, category, isPrivate } = (req as any).body
   const userId = req.user!._id
 
   // TODO: Community 모델이 생성되면 실제 커뮤니티 생성 로직 구현
@@ -60,7 +60,7 @@ export const createCommunity = asyncHandler(async (req: AuthRequest, res: Respon
 })
 
 export const joinCommunity = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { communityId: _communityId } = req.params
+  const { communityId: _communityId } = (req as any).params
 
   // TODO: Community 모델이 생성되면 실제 커뮤니티 가입 로직 구현
 
@@ -71,7 +71,7 @@ export const joinCommunity = asyncHandler(async (req: AuthRequest, res: Response
 })
 
 export const leaveCommunity = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { communityId: _communityId } = req.params
+  const { communityId: _communityId } = (req as any).params
 
   // TODO: Community 모델이 생성되면 실제 커뮤니티 탈퇴 로직 구현
 
