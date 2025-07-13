@@ -1,0 +1,80 @@
+{
+  "title": "RealtyConnect - Real Estate Investment Community",
+  "description": "A real estate investment community platform supporting Korean and English",
+  "navigation": {
+    "community": "Community",
+    "tools": "Tools",
+    "education": "Education",
+    "network": "Network"
+  },
+  "buttons": {
+    "post": "Post",
+    "edit_profile": "Edit Profile",
+    "view_more": "View More",
+    "register": "Register",
+    "download": "Download",
+    "share": "Share",
+    "like": "Like",
+    "comment": "Comment",
+    "search": "Search"
+  },
+  "placeholders": {
+    "search": "Search...",
+    "post_content": "Share your investment experience or ask questions..."
+  },
+  "profile": {
+    "total_assets": "Total Assets",
+    "properties": "Properties",
+    "monthly_income": "Monthly Rental Income",
+    "location": "Location"
+  },
+  "community": {
+    "local_groups": "Local Groups",
+    "members": "members",
+    "hours_ago": "hours ago",
+    "days_ago": "days ago"
+  },
+  "tools": {
+    "brrrr_calculator": "BRRRR Calculator",
+    "brrrr_description": "Buy, Rehab, Rent, Refinance, Repeat strategy profitability analysis",
+    "1031_exchange": "1031 Exchange Guide",
+    "1031_description": "1031 exchange procedures and conditions for tax deferral",
+    "area_analysis": "Area Analysis Tool",
+    "area_description": "Rental yield, crime rate, school district info at a glance",
+    "dscr_calculator": "DSCR Loan Calculator",
+    "dscr_description": "Debt Service Coverage Ratio based loan condition simulation"
+  },
+  "education": {
+    "beginner_course": "Beginner Complete Course",
+    "real_estate_basics": "Real Estate Investment Basics",
+    "loan_types": "Loan Types and Conditions",
+    "property_analysis": "Property Analysis and Due Diligence",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "locked": "Locked",
+    "minutes": "minutes"
+  },
+  "network": {
+    "find_partners": "Find Partners",
+    "capital_partner": "Looking for Capital Partner",
+    "co_investor": "Seeking Co-investors",
+    "offline_events": "Offline Events",
+    "regular_meetup": "Regular Meetup",
+    "networking_night": "Networking Night"
+  },
+  "webinars": {
+    "this_week": "This Week's Webinars",
+    "dscr_mastery": "DSCR Loan Mastery",
+    "1031_practical": "1031 Exchange Practical Guide"
+  },
+  "mentors": {
+    "find_mentor": "Find Mentor",
+    "commercial_re": "Commercial RE",
+    "years_experience": "years experience",
+    "deals": "deals"
+  },
+  "tips": {
+    "daily_tip": "Daily Tip",
+    "tenant_credit": "Tenant Credit Law"
+  }
+} 

@@ -1,0 +1,80 @@
+{
+  "title": "RealtyConnect - 부동산 투자 커뮤니티",
+  "description": "한국어와 영어를 지원하는 부동산 투자 커뮤니티 플랫폼",
+  "navigation": {
+    "community": "커뮤니티",
+    "tools": "도구",
+    "education": "교육",
+    "network": "네트워크"
+  },
+  "buttons": {
+    "post": "포스트",
+    "edit_profile": "프로필 수정",
+    "view_more": "더보기",
+    "register": "신청하기",
+    "download": "다운로드",
+    "share": "공유",
+    "like": "좋아요",
+    "comment": "댓글",
+    "search": "검색"
+  },
+  "placeholders": {
+    "search": "검색...",
+    "post_content": "투자 경험이나 질문을 공유해보세요..."
+  },
+  "profile": {
+    "total_assets": "총 자산",
+    "properties": "보유 물건",
+    "monthly_income": "월 임대수입",
+    "location": "지역"
+  },
+  "community": {
+    "local_groups": "내 지역 그룹",
+    "members": "명",
+    "hours_ago": "시간 전",
+    "days_ago": "일 전"
+  },
+  "tools": {
+    "brrrr_calculator": "BRRRR 계산기",
+    "brrrr_description": "Buy, Rehab, Rent, Refinance, Repeat 전략 수익성 분석",
+    "1031_exchange": "1031 교환 가이드",
+    "1031_description": "세금 이연을 위한 1031 교환 절차와 조건",
+    "area_analysis": "지역 분석 도구",
+    "area_description": "임대 수익률, 범죄율, 학군 정보 한눈에",
+    "dscr_calculator": "DSCR 융자 계산기",
+    "dscr_description": "부채상환비율 기반 융자 조건 시뮬레이션"
+  },
+  "education": {
+    "beginner_course": "초보자 완주 코스",
+    "real_estate_basics": "부동산 투자 기초",
+    "loan_types": "융자 종류와 조건",
+    "property_analysis": "물건 분석과 실사",
+    "completed": "완료됨",
+    "in_progress": "진행중",
+    "locked": "잠김",
+    "minutes": "분"
+  },
+  "network": {
+    "find_partners": "파트너 찾기",
+    "capital_partner": "자본 파트너 구합니다",
+    "co_investor": "공동 투자자 모집",
+    "offline_events": "오프라인 모임",
+    "regular_meetup": "정기모임",
+    "networking_night": "네트워킹 나이트"
+  },
+  "webinars": {
+    "this_week": "이번 주 웹세미나",
+    "dscr_mastery": "DSCR 융자 완전정복",
+    "1031_practical": "1031 교환 실전 가이드"
+  },
+  "mentors": {
+    "find_mentor": "멘토 찾기",
+    "commercial_re": "Commercial RE",
+    "years_experience": "년 경험",
+    "deals": "deals"
+  },
+  "tips": {
+    "daily_tip": "오늘의 팁",
+    "tenant_credit": "임차인 신용 대출법"
+  }
+} 
