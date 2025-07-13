@@ -60,6 +60,28 @@ export interface User {
   propertyCount?: number
   followers: string[]
   following: string[]
+  isPaid: boolean
+  paymentInfo?: {
+    customerId?: string
+    subscriptionId?: string
+    planType?: 'basic' | 'premium' | 'enterprise'
+    subscriptionStatus?: 'active' | 'canceled' | 'past_due' | 'incomplete'
+    currentPeriodStart?: string
+    currentPeriodEnd?: string
+    paymentMethod?: {
+      type: 'card' | 'paypal' | 'bank_transfer'
+      last4?: string
+      brand?: string
+    }
+    billingHistory?: {
+      invoiceId: string
+      amount: number
+      currency: string
+      status: 'paid' | 'pending' | 'failed'
+      paidAt?: string
+      createdAt: string
+    }[]
+  }
   createdAt: string
   updatedAt: string
 }
@@ -268,6 +290,61 @@ export const usersApi = {
 
   getFollowing: async (userId: string): Promise<ApiResponse<{ users: User[] }>> => {
     const response = await api.get(`/users/${userId}/following`)
+    return response.data
+  },
+}
+
+// Payment API
+export const paymentApi = {
+  createSubscription: async (planType: 'basic' | 'premium' | 'enterprise'): Promise<ApiResponse<{ 
+    subscriptionId: string
+    clientSecret: string
+  }>> => {
+    const response = await api.post('/payment/subscription', { planType })
+    return response.data
+  },
+
+  updateSubscription: async (subscriptionId: string, planType: 'basic' | 'premium' | 'enterprise'): Promise<ApiResponse<{ 
+    subscription: any 
+  }>> => {
+    const response = await api.put(`/payment/subscription/${subscriptionId}`, { planType })
+    return response.data
+  },
+
+  cancelSubscription: async (subscriptionId: string): Promise<ApiResponse<null>> => {
+    const response = await api.delete(`/payment/subscription/${subscriptionId}`)
+    return response.data
+  },
+
+  getPaymentMethods: async (): Promise<ApiResponse<{ paymentMethods: any[] }>> => {
+    const response = await api.get('/payment/methods')
+    return response.data
+  },
+
+  addPaymentMethod: async (paymentMethodId: string): Promise<ApiResponse<{ paymentMethod: any }>> => {
+    const response = await api.post('/payment/methods', { paymentMethodId })
+    return response.data
+  },
+
+  removePaymentMethod: async (paymentMethodId: string): Promise<ApiResponse<null>> => {
+    const response = await api.delete(`/payment/methods/${paymentMethodId}`)
+    return response.data
+  },
+
+  getBillingHistory: async (page: number = 1, limit: number = 10): Promise<PaginatedResponse<any>> => {
+    const response = await api.get('/payment/billing-history', { 
+      params: { page, limit } 
+    })
+    return response.data
+  },
+
+  getInvoice: async (invoiceId: string): Promise<ApiResponse<{ invoice: any }>> => {
+    const response = await api.get(`/payment/invoice/${invoiceId}`)
+    return response.data
+  },
+
+  updatePaymentMethod: async (paymentMethodId: string): Promise<ApiResponse<{ paymentMethod: any }>> => {
+    const response = await api.put('/payment/default-method', { paymentMethodId })
     return response.data
   },
 } 

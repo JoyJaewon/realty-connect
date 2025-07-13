@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { Button } from "@/components/ui/Button"
-import { MapPin, Calendar, Users, MessageCircle, Heart, Share2 } from "lucide-react"
+import { MapPin, Calendar, Users, MessageCircle, Heart, Share2, Crown, Star } from "lucide-react"
 import { postsApi, usersApi, Post, User } from "@/lib/api"
 import Header from "../../components/layout/Header"
 import Sidebar from "../../components/layout/Sidebar"
@@ -217,9 +217,27 @@ export default function ProfilePage() {
                                         </Avatar>
 
                                         <div className="flex-1 text-center md:text-left">
-                                            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                                                {userProfile.firstName}{userProfile.lastName}
-                                            </h1>
+                                            <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+                                                <h1 className="text-3xl font-bold text-gray-900">
+                                                    {userProfile.firstName}{userProfile.lastName}
+                                                </h1>
+                                                {userProfile.isPaid && (
+                                                    <div className="flex items-center">
+                                                        {userProfile.paymentInfo?.planType === 'premium' && (
+                                                            <div className="flex items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                                                <Star className="w-3 h-3 mr-1" />
+                                                                Premium
+                                                            </div>
+                                                        )}
+                                                        {userProfile.paymentInfo?.planType === 'enterprise' && (
+                                                            <div className="flex items-center bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                                                <Crown className="w-3 h-3 mr-1" />
+                                                                Enterprise
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
 
                                             <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 mb-4 text-gray-600">
                                                 <div className="flex items-center">
@@ -230,6 +248,12 @@ export default function ProfilePage() {
                                                     <Calendar className="w-4 h-4 mr-1" />
                                                     <span className="text-sm">{formatJoinDate(userProfile.createdAt)} 가입</span>
                                                 </div>
+                                                {userProfile.isPaid && userProfile.paymentInfo?.subscriptionStatus === 'active' && (
+                                                    <div className="flex items-center text-green-600">
+                                                        <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                                        <span className="text-sm font-medium">활성 구독</span>
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <div className="flex justify-center md:justify-start space-x-8 mb-4">
@@ -245,6 +269,14 @@ export default function ProfilePage() {
                                                     <div className="font-bold text-lg">{userProfile.following?.length || 0}</div>
                                                     <div className="text-sm text-gray-600">팔로잉</div>
                                                 </div>
+                                                {userProfile.isPaid && userProfile.totalAssets && (
+                                                    <div className="text-center">
+                                                        <div className="font-bold text-lg text-green-600">
+                                                            ${(userProfile.totalAssets / 1000000).toFixed(1)}M
+                                                        </div>
+                                                        <div className="text-sm text-gray-600">총 자산</div>
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <p className="text-gray-700 mb-4">{userProfile.bio || '소개가 없습니다.'}</p>

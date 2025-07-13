@@ -16,6 +16,28 @@ export interface IUser extends Document {
   propertyCount?: number
   followers: mongoose.Types.ObjectId[]
   following: mongoose.Types.ObjectId[]
+  isPaid: boolean
+  paymentInfo?: {
+    customerId?: string
+    subscriptionId?: string
+    planType?: 'basic' | 'premium' | 'enterprise'
+    subscriptionStatus?: 'active' | 'canceled' | 'past_due' | 'incomplete'
+    currentPeriodStart?: Date
+    currentPeriodEnd?: Date
+    paymentMethod?: {
+      type: 'card' | 'paypal' | 'bank_transfer'
+      last4?: string
+      brand?: string
+    }
+    billingHistory?: {
+      invoiceId: string
+      amount: number
+      currency: string
+      status: 'paid' | 'pending' | 'failed'
+      paidAt?: Date
+      createdAt: Date
+    }[]
+  }
   refreshToken?: string
   createdAt: Date
   updatedAt: Date
@@ -88,6 +110,75 @@ const userSchema = new Schema<IUser>({
     type: Schema.Types.ObjectId,
     ref: 'User',
   }],
+  isPaid: {
+    type: Boolean,
+    default: false,
+  },
+  paymentInfo: {
+    customerId: {
+      type: String,
+      sparse: true,
+    },
+    subscriptionId: {
+      type: String,
+      sparse: true,
+    },
+    planType: {
+      type: String,
+      enum: ['basic', 'premium', 'enterprise'],
+      default: 'basic',
+    },
+    subscriptionStatus: {
+      type: String,
+      enum: ['active', 'canceled', 'past_due', 'incomplete'],
+      default: 'active',
+    },
+    currentPeriodStart: {
+      type: Date,
+    },
+    currentPeriodEnd: {
+      type: Date,
+    },
+    paymentMethod: {
+      type: {
+        type: String,
+        enum: ['card', 'paypal', 'bank_transfer'],
+      },
+      last4: {
+        type: String,
+        maxlength: 4,
+      },
+      brand: {
+        type: String,
+      },
+    },
+    billingHistory: [{
+      invoiceId: {
+        type: String,
+        required: true,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      currency: {
+        type: String,
+        default: 'USD',
+      },
+      status: {
+        type: String,
+        enum: ['paid', 'pending', 'failed'],
+        required: true,
+      },
+      paidAt: {
+        type: Date,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+    }],
+  },
   refreshToken: {
     type: String,
   },
@@ -114,7 +205,13 @@ userSchema.methods.toJSON = function () {
   const userObject = this.toObject()
   delete userObject.password
   delete userObject.refreshToken
+  // 결제 정보의 민감한 부분만 제거 (customerId, subscriptionId 등은 유지)
   return userObject
 }
+
+// 인덱스 추가
+userSchema.index({ 'paymentInfo.customerId': 1 })
+userSchema.index({ 'paymentInfo.subscriptionId': 1 })
+userSchema.index({ isPaid: 1 })
 
 export const User = mongoose.model<IUser>('User', userSchema) 

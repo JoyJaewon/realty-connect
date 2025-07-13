@@ -21,6 +21,30 @@ const seedUsers = [
     totalAssets: 2400000,
     monthlyRentalIncome: 12800,
     propertyCount: 8,
+    isPaid: true,
+    paymentInfo: {
+      customerId: 'cus_kim_investor',
+      subscriptionId: 'sub_kim_premium',
+      planType: 'premium',
+      subscriptionStatus: 'active',
+      currentPeriodStart: new Date('2024-01-01'),
+      currentPeriodEnd: new Date('2024-02-01'),
+      paymentMethod: {
+        type: 'card',
+        last4: '4242',
+        brand: 'visa',
+      },
+      billingHistory: [
+        {
+          invoiceId: 'in_kim_001',
+          amount: 29.99,
+          currency: 'USD',
+          status: 'paid',
+          paidAt: new Date('2024-01-01'),
+          createdAt: new Date('2024-01-01'),
+        },
+      ],
+    },
   },
   {
     email: 'park.realestate@gmail.com',
@@ -35,6 +59,30 @@ const seedUsers = [
     totalAssets: 1800000,
     monthlyRentalIncome: 9500,
     propertyCount: 6,
+    isPaid: true,
+    paymentInfo: {
+      customerId: 'cus_park_realestate',
+      subscriptionId: 'sub_park_enterprise',
+      planType: 'enterprise',
+      subscriptionStatus: 'active',
+      currentPeriodStart: new Date('2024-01-01'),
+      currentPeriodEnd: new Date('2024-02-01'),
+      paymentMethod: {
+        type: 'card',
+        last4: '5555',
+        brand: 'mastercard',
+      },
+      billingHistory: [
+        {
+          invoiceId: 'in_park_001',
+          amount: 99.99,
+          currency: 'USD',
+          status: 'paid',
+          paidAt: new Date('2024-01-01'),
+          createdAt: new Date('2024-01-01'),
+        },
+      ],
+    },
   },
   {
     email: 'lee.method@gmail.com',
@@ -49,6 +97,11 @@ const seedUsers = [
     totalAssets: 950000,
     monthlyRentalIncome: 4200,
     propertyCount: 3,
+    isPaid: false,
+    paymentInfo: {
+      planType: 'basic',
+      subscriptionStatus: 'canceled',
+    },
   },
   {
     email: 'choi.ceo@gmail.com',
@@ -63,6 +116,10 @@ const seedUsers = [
     totalAssets: 200000,
     monthlyRentalIncome: 0,
     propertyCount: 0,
+    isPaid: false,
+    paymentInfo: {
+      planType: 'basic',
+    },
   },
   {
     email: 'kim.expert@gmail.com',
@@ -77,6 +134,36 @@ const seedUsers = [
     totalAssets: 5200000,
     monthlyRentalIncome: 25000,
     propertyCount: 12,
+    isPaid: true,
+    paymentInfo: {
+      customerId: 'cus_kim_expert',
+      subscriptionId: 'sub_kim_enterprise',
+      planType: 'enterprise',
+      subscriptionStatus: 'active',
+      currentPeriodStart: new Date('2024-01-01'),
+      currentPeriodEnd: new Date('2024-02-01'),
+      paymentMethod: {
+        type: 'paypal',
+      },
+      billingHistory: [
+        {
+          invoiceId: 'in_kim_expert_001',
+          amount: 99.99,
+          currency: 'USD',
+          status: 'paid',
+          paidAt: new Date('2024-01-01'),
+          createdAt: new Date('2024-01-01'),
+        },
+        {
+          invoiceId: 'in_kim_expert_002',
+          amount: 99.99,
+          currency: 'USD',
+          status: 'paid',
+          paidAt: new Date('2024-02-01'),
+          createdAt: new Date('2024-02-01'),
+        },
+      ],
+    },
   },
   {
     email: 'park.experience@gmail.com',
@@ -91,6 +178,30 @@ const seedUsers = [
     totalAssets: 3100000,
     monthlyRentalIncome: 8500,
     propertyCount: 15,
+    isPaid: true,
+    paymentInfo: {
+      customerId: 'cus_park_experience',
+      subscriptionId: 'sub_park_premium',
+      planType: 'premium',
+      subscriptionStatus: 'active',
+      currentPeriodStart: new Date('2024-01-01'),
+      currentPeriodEnd: new Date('2024-02-01'),
+      paymentMethod: {
+        type: 'card',
+        last4: '1234',
+        brand: 'amex',
+      },
+      billingHistory: [
+        {
+          invoiceId: 'in_park_exp_001',
+          amount: 29.99,
+          currency: 'USD',
+          status: 'paid',
+          paidAt: new Date('2024-01-01'),
+          createdAt: new Date('2024-01-01'),
+        },
+      ],
+    },
   },
 ]
 

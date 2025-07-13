@@ -16,6 +16,7 @@ import authRoutes from './routes/auth'
 import userRoutes from './routes/user'
 import postRoutes from './routes/post'
 import communityRoutes from './routes/community'
+import paymentRoutes from './routes/payment'
 
 // Load environment variables
 dotenv.config()
@@ -71,7 +72,8 @@ app.get('/health', (_req: any, res: any) => {
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
-app.use('/api/community', communityRoutes)
+app.use('/api/communities', communityRoutes)
+app.use('/api/payment', paymentRoutes)
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {

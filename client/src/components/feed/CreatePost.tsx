@@ -48,6 +48,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
                 username: "kim_investor",
                 avatar: "",
                 location: "LA 지역",
+                isPaid: false,
                 followers: [],
                 following: [],
                 createdAt: new Date().toISOString(),
