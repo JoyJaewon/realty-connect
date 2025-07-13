@@ -44,13 +44,13 @@ app.use(cors({
   origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
   credentials: true
 }))
-app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) } }))
+app.use(morgan('combined', { stream: { write: (message: any) => logger.info(message.trim()) } }))
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
 app.use(limiter)
 
 // Health check
-app.get('/health', (_req, res) => {
+app.get('/health', (_req: any, res: any) => {
   res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() })
 })
 
@@ -83,8 +83,11 @@ io.on('connection', (socket) => {
 app.use(errorHandler)
 
 // 404 handler
-app.use('*', (_req, res) => {
-  res.status(404).json({ message: 'Route not found' })
+app.use((_req: any, res: any) => {
+  res.status(404).json({
+    success: false,
+    message: '요청한 리소스를 찾을 수 없습니다.',
+  })
 })
 
 // Start server

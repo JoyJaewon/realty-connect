@@ -3,8 +3,8 @@ import { User } from '@/models/User'
 import { asyncHandler } from '@/middleware/errorHandler'
 import { AuthRequest } from '@/middleware/auth'
 
-export const getUserProfile = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  const { userId } = req.params
+export const getUserProfile = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
+  const { userId } = (req as any).params
 
   const user = await User.findById(userId)
     .populate('followers', 'firstName lastName username avatar')
@@ -25,7 +25,7 @@ export const getUserProfile = asyncHandler(async (req: Request, res: Response): 
 })
 
 export const updateProfile = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { firstName, lastName, bio, location, investmentGoals, totalAssets, monthlyRentalIncome, propertyCount } = req.body
+  const { firstName, lastName, bio, location, investmentGoals, totalAssets, monthlyRentalIncome, propertyCount } = (req as any).body
 
   const user = await User.findById(req.user!._id)
 
@@ -90,7 +90,7 @@ export const getUserPosts = asyncHandler(async (req: Request, res: Response): Pr
 })
 
 export const followUser = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { userId } = req.params
+  const { userId } = (req as any).params
   const currentUserId = req.user!._id
 
   if (userId === currentUserId.toString()) {

@@ -4,7 +4,7 @@ import { AuthRequest } from '@/middleware/auth'
 
 // TODO: Post 모델이 생성되면 실제 구현
 export const createPost = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { content, images, tags, location } = req.body
+  const { content, images, tags, location } = (req as any).body
 
   // 임시 응답
   res.status(201).json({
@@ -43,8 +43,8 @@ export const getPosts = asyncHandler(async (req: Request, res: Response): Promis
   })
 })
 
-export const getPost = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  const { postId: _postId } = req.params
+export const getPost = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
+  const { postId: _postId } = (req as any).params
 
   // 임시 응답
   res.json({
@@ -56,8 +56,8 @@ export const getPost = asyncHandler(async (req: Request, res: Response): Promise
 })
 
 export const updatePost = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { postId } = req.params
-  const { content, images, tags, location } = req.body
+  const { postId: _postId } = (req as any).params
+  const { content, images, tags, location } = (req as any).body
 
   // 임시 응답
   res.json({
@@ -65,7 +65,7 @@ export const updatePost = asyncHandler(async (req: AuthRequest, res: Response): 
     message: '게시물이 수정되었습니다.',
     data: {
       post: {
-        id: postId,
+        id: _postId,
         content,
         images: images || [],
         tags: tags || [],
@@ -77,7 +77,7 @@ export const updatePost = asyncHandler(async (req: AuthRequest, res: Response): 
 })
 
 export const deletePost = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { postId: _postId } = req.params
+  const { postId: _postId } = (req as any).params
 
   // 임시 응답
   res.json({
@@ -87,7 +87,7 @@ export const deletePost = asyncHandler(async (req: AuthRequest, res: Response): 
 })
 
 export const likePost = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { postId: _postId } = req.params
+  const { postId: _postId } = (req as any).params
 
   // 임시 응답
   res.json({
@@ -97,7 +97,7 @@ export const likePost = asyncHandler(async (req: AuthRequest, res: Response): Pr
 })
 
 export const unlikePost = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
-  const { postId: _postId } = req.params
+  const { postId: _postId } = (req as any).params
 
   // 임시 응답
   res.json({
